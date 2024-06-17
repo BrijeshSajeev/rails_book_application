@@ -11,17 +11,19 @@
     </thead>
     <tbody>
       <!-- Replace with dynamic content -->
-      <tr>
-        <td class="py-2 px-4 border border-gray-200">Example Book</td>
-        <td class="py-2 px-4 border border-gray-200">Author Name</td>
-        <td class="py-2 px-4 border border-gray-200">2023</td>
-        <td class="py-2 px-4 border border-gray-200">
-          <div class="flex gap-2">
-            <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Update</button>
-            <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Delete</button>
-          </div>
-        </td>
-      </tr>
+      <% @books.each do |book|%>
+        <tr>
+          <td class="py-2 px-4 border border-gray-200"><%=book.name%></td>
+          <td class="py-2 px-4 border border-gray-200"><%=book.author%></td>
+          <td class="py-2 px-4 border border-gray-200"><%=book.year%></td>
+          <td class="py-2 px-4 border border-gray-200">
+            <div class="flex gap-2">
+              <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Update</button>
+              <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Delete</button>
+            </div>
+          </td>
+        </tr>
+      <%end%>
       <!-- Repeat the <tr> block for more rows -->
     </tbody>
   </table>
