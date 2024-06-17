@@ -37,3 +37,4 @@
 node_modules/
 package-lock.json/
 tailwind.config.js/
+demo.html/
