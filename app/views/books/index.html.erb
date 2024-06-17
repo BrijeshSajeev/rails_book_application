@@ -1,2 +1,28 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<div class="container mx-auto px-12 py-8">
+  <h1 class="text-2xl font-bold mb-12 text-center text-gray-950 uppercase" >Books List</h1>
+  <table class="min-w-full bg-white border border-gray-200">
+    <thead>
+      <tr>
+        <th class="py-2 px-4 border border-gray-200 text-left">Name</th>
+        <th class="py-2 px-4 border border-gray-200 text-left">Author</th>
+        <th class="py-2 px-4 border border-gray-200 text-left">Year</th>
+        <th class="py-2 px-4 border border-gray-200 text-left">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Replace with dynamic content -->
+      <tr>
+        <td class="py-2 px-4 border border-gray-200">Example Book</td>
+        <td class="py-2 px-4 border border-gray-200">Author Name</td>
+        <td class="py-2 px-4 border border-gray-200">2023</td>
+        <td class="py-2 px-4 border border-gray-200">
+          <div class="flex gap-2">
+            <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Update</button>
+            <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Delete</button>
+          </div>
+        </td>
+      </tr>
+      <!-- Repeat the <tr> block for more rows -->
+    </tbody>
+  </table>
+</div>
