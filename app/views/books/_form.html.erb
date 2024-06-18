@@ -1,0 +1,42 @@
+<div class="bg-white shadow-md rounded-lg lg:px-12 px-6 py-6 lg:w-2/3 mx-auto mt-12">
+  <%= form_with model: @book, local: true do |form| %>
+    <div class="mb-4">
+      <%= form.label :name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <% @book.errors.full_messages_for(:name).each do |message| %>
+        <div class="text-red-500 text-sm"><%= message %></div>
+      <% end %>
+    </div>
+    <div class="mb-4">
+      <%= form.label :author, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :author, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <% @book.errors.full_messages_for(:author).each do |message| %>
+        <div class="text-red-500 text-sm"><%= message %></div>
+      <% end %>
+    </div>
+    <div class="mb-4">
+      <%= form.label :year, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.number_field :year, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <% @book.errors.full_messages_for(:year).each do |message| %>
+        <div class="text-red-500 text-sm"><%= message %></div>
+      <% end %>
+    </div>
+    <div class="mb-4">
+      <%= form.label :genre, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :genre, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <% @book.errors.full_messages_for(:genre).each do |message| %>
+        <div class="text-red-500 text-sm"><%= message %></div>
+      <% end %>
+    </div>
+    <div class="mb-4">
+      <%= form.label :price, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.number_field :price, step: 0.01, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <% @book.errors.full_messages_for(:price).each do |message| %>
+        <div class="text-red-500 text-sm"><%= message %></div>
+      <% end %>
+    </div>
+    <div class="flex items-center justify-between">
+      <%= form.submit 'Submit', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+  <% end %>
+</div>
