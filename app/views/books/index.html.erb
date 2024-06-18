@@ -18,9 +18,9 @@
           <td class="py-2 px-4 border border-gray-200"><%=book.year%></td>
           <td class="py-2 px-4 border border-gray-200">
             <div class="flex gap-2">
-              <%= link_to 'Detail', book, class: "bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"  %>
+              <%= link_to 'Detail', book_path(book), class: "bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"  %>
               <%= link_to 'Update', edit_book_path(book), class: "bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"%>
-              <%= link_to 'Delete', book, data: {
+              <%= link_to 'Delete', book_path(book), data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                 },
