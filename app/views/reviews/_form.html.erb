@@ -1,0 +1,23 @@
+<!-- app/views/reviews/_form.html.erb -->
+<%= form_with model: [ @book, @book.reviews.build ] do |form| %>
+  <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-6"><%= form.object.new_record? ? 'Add Review' : 'Edit Review' %></h2>
+
+    <!-- Content Field -->
+    <div class="mb-4">
+      <%= form.label :content, class: "block text-gray-700" %>
+      <%= form.text_area :content, rows: 5, class: "mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
+    </div>
+
+    <!-- Rating Field -->
+    <div class="mb-4">
+      <%= form.label :rating, class: "block text-gray-700" %>
+      <%= form.number_field :rating, in: 1..5, step: 1, class: "mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
+    </div>
+
+    <!-- Submit Button -->
+    <div>
+      <%= form.submit class: "w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700" %>
+    </div>
+  </div>
+<% end %>
