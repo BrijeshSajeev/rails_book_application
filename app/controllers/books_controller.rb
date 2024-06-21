@@ -1,10 +1,11 @@
 class BooksController < ApplicationController
+  before_action :set_book, only: [:show, :edit, :update ,:destroy]
+
   def index
     @books = Book.all
   end
 
   def show
-    @book = Book.find(params[:id])
   end
 
   def new
@@ -24,11 +25,9 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = Book.find(params[:id])
   end
 
   def update
-    @book = Book.find(params[:id])
     author_name = book_params[:author_name]
     @book.author = Author.find_or_create_by(name: author_name)
 
@@ -40,13 +39,15 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book = Book.find(params[:id])
     @book.destroy
     redirect_to books_path, status: :see_other
   end
 
   private
-
+  def set_book
+    @book = Book.find(params[:id])
+  end
+  
   def book_params
     params.require(:book).permit(:name, :author_name, :price, :year, :genre)
   end
