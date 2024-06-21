@@ -12,7 +12,10 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_param)
+    @book = Book.new(book_params.except(:author_name))
+    author_name = book_params[:author_name]
+    @book.author = Author.find_or_create_by(name: author_name)
+
     if @book.save
       redirect_to @book
     else
@@ -26,13 +29,15 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-    if @book.update(book_param)
+    author_name = book_params[:author_name]
+    @book.author = Author.find_or_create_by(name: author_name)
+
+    if @book.update(book_params.except(:author_name))
       redirect_to @book
     else
       render :edit, status: :unprocessable_entity
     end
   end
-  
 
   def destroy
     @book = Book.find(params[:id])
@@ -41,8 +46,8 @@ class BooksController < ApplicationController
   end
 
   private
-  def book_param
-    params.require(:book).permit(:name,:author,:price,:year,:genre)
-  end
 
+  def book_params
+    params.require(:book).permit(:name, :author_name, :price, :year, :genre)
+  end
 end

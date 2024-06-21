@@ -14,7 +14,7 @@
       <% @books.each do |book|%>
         <tr>
           <td class="py-2 px-4 border border-gray-200"><%=book.name%></td>
-          <td class="py-2 px-4 border border-gray-200"><%=book.author%></td>
+          <td class="py-2 px-4 border border-gray-200"><%=book.author.name%></td>
           <td class="py-2 px-4 border border-gray-200"><%=book.year%></td>
           <td class="py-2 px-4 border border-gray-200">
             <div class="flex gap-2">
