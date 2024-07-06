@@ -7,4 +7,6 @@ class Book < ApplicationRecord
 
   validates :genre, presence: true
   validates :price, presence: true
+
+  mount_uploader :image, ImageUploader
 end
