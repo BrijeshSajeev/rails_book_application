@@ -23,9 +23,11 @@
     </div>
     <div class="flex space-x-4 mb-4">
       <%= link_to 'Back', root_path, class: "bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600" %>
-      <%= link_to 'Delete', book_path(@book), class: "bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600", 
-        data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-      <%= link_to 'Update', edit_book_path(@book), class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+      <% if @book.author.name == current_user.name%>
+        <%= link_to 'Delete', book_path(@book), class: "bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600", 
+          data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+        <%= link_to 'Update', edit_book_path(@book), class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+      <%end%>
     </div>
   </div>
 <div class="container mx-auto p-6 mt-6">
