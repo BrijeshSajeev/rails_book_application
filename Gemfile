@@ -69,3 +69,7 @@ end
 gem "devise", "~> 4.9"
 
 gem "carrierwave", "~> 3.0"
+
+gem "dotenv-rails", "~> 3.1"
+
+gem "fog-aws", "~> 3.23"
