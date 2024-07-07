@@ -1,12 +1,16 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :show, :update, :destroy]
-
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   def index
     @users = User.all
   end
 
   def show
-    @user = User.find(params[:id])
+    if @user.email == current_user.email
+      #
+    else
+      redirect_to users_path, alert: 'You are not authorized to delete this user.'
+    end
   end
 
   def new
@@ -14,34 +18,47 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      redirect_to @user
+    if @user.email == current_user.email
+      @user = User.new(user_params)
+      if @user.save
+        redirect_to @user
+      else
+        render 'new'
+      end
     else
-      render 'new'
+      redirect_to users_path, alert: 'You are not authorized to delete this user.'
     end
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to @user
+    if @user.email == current_user.email 
+      if @user.update(user_params)
+        redirect_to @user
+      else
+        render 'edit'
+      end
     else
-      render 'edit'
+      redirect_to users_path, alert: 'You are not authorized to delete this user.'
     end
   end
 
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to users_path
+    if @user.email == current_user.email
+      @user.destroy
+      redirect_to users_path
+    else
+      redirect_to users_path, alert: 'You are not authorized to delete this user.'
+    end
   end
 
   private
+ 
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:name, :sex, :email, :age, :image)
