@@ -10,6 +10,45 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
+    <% flash.each do |key, value| %>
+      <div class="p-4 mb-4 text-sm <%= flash_class(key) %> rounded">
+        <%= value %>
+      </div>
+    <% end %>    
+    <nav class="bg-gray-800 p-4 flex items-center justify-between">
+      <div class="flex items-center space-x-4">
+        <% if user_signed_in? %>
+          <% if current_user.image.present? %>
+            <%= image_tag(current_user.image.url, alt: current_user.name, class: "h-10 w-10 rounded-full") %>
+          <% else %>
+            <%= image_tag('default.jpeg', alt: 'Default Profile', class: "h-10 w-10 rounded-full") %>
+          <% end %>
+          <span class="text-white text-lg"><%= current_user.name %></span>
+        <% end %>
+      </div>
+
+      <ul class="flex items-center space-x-4">
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to 'Edit Profile', edit_user_path(current_user), class: 'text-white bg-gray-500 hover:bg-red-600 px-3 py-2 rounded-md text-sm font-medium' %>
+          </li>
+
+          <li>
+            <%= link_to 'Logout', destroy_user_session_path, data: {  turbo_method: :delete,turbo_confirm: 'Are you sure?' },class: 'text-white bg-red-500 hover:bg-red-600 px-3 py-2 rounded-md text-sm font-medium' %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to 'Login', new_user_session_path, class: 'text-white bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md text-sm font-medium' %>
+          </li>
+          <li>
+            <%= link_to 'Sign Up', new_user_registration_path, class: 'text-white bg-green-500 hover:bg-green-600 px-3 py-2 rounded-md text-sm font-medium' %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+
     <%= yield %>
+
+
   </body>
 </html>

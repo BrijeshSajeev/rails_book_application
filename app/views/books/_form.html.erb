@@ -7,6 +7,7 @@
         <div class="text-red-500 text-sm"><%= message %></div>
       <% end %>
     </div>
+    <!--
     <div class="mb-4">
       <%= form.label :author, class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.text_field :author_name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
@@ -14,6 +15,13 @@
         <div class="text-red-500 text-sm"><%= message %></div>
       <% end %>
     </div>
+    -->
+          
+    <div class="mb-4">
+      <%= form.label :image, 'Image', class: 'block text-gray-700 text-sm font-bold mb-2' %>
+      <%= form.file_field :image, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+    </div>
+
     <div class="mb-4">
       <%= form.label :year, class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= form.number_field :year, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>

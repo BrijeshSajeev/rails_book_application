@@ -65,3 +65,13 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "devise", "~> 4.9"
+
+gem "carrierwave", "~> 3.0"
+
+gem "dotenv-rails", "~> 3.1"
+
+gem "fog-aws", "~> 3.23"
+
+gem "faker", "~> 3.4"
