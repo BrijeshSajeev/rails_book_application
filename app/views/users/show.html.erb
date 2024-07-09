@@ -1,8 +1,8 @@
 <div class="bg-gray-100 h-screen flex items-center justify-center">
   <div class=" bg-white p-8 rounded-lg shadow-lg">
-    <% if @user.image.present? %>
+    <% if @user.image_new.present? %>
       <div class="flex justify-center mb-4">
-        <%= image_tag( @user.image.url, class: "w-32 h-32 rounded-full object-cover")%>
+        <%= image_tag( @user.image_new, class: "w-32 h-32 rounded-full object-cover")%>
       </div>
     <% else %>
       <div class="flex justify-center mb-4">
