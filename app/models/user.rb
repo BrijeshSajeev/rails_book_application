@@ -3,8 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
-  mount_uploader :image, ImageUploader
+  
+  has_one_attached :image_new
+  # mount_uploader :image, ImageUploader
 
   validates :name, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
