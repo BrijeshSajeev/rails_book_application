@@ -6,11 +6,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    if @user.email == current_user.email
-      #
-    else
-      redirect_to users_path, alert: 'You are not authorized to delete this user.'
-    end
+    # if @user.email == current_user.email
+    #   #
+    # else
+    #   redirect_to users_path, alert: 'You are not authorized to delete this user.'
+    # end
   end
 
   def new
@@ -61,6 +61,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :sex, :email, :age, :image)
+    params.require(:user).permit(:name, :sex, :email, :age, :image_new)
   end
 end
