@@ -75,3 +75,7 @@ gem "dotenv-rails", "~> 3.1"
 gem "fog-aws", "~> 3.23"
 
 gem "faker", "~> 3.4"
+
+gem 'aws-sdk-s3', require: false
+
+gem "active_storage_validations", "~> 1.1"

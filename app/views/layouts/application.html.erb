@@ -18,8 +18,8 @@
     <nav class="bg-gray-800 p-4 flex items-center justify-between">
       <div class="flex items-center space-x-4">
         <% if user_signed_in? %>
-          <% if current_user.image.present? %>
-            <%= image_tag(current_user.image.url, alt: current_user.name, class: "h-10 w-10 rounded-full") %>
+          <% if current_user.image_new.present? %>
+            <%= image_tag(current_user.image_new, alt: current_user.name, class: "h-10 w-10 rounded-full") %>
           <% else %>
             <%= image_tag('default.jpeg', alt: 'Default Profile', class: "h-10 w-10 rounded-full") %>
           <% end %>
