@@ -79,3 +79,5 @@ gem "faker", "~> 3.4"
 gem 'aws-sdk-s3', require: false
 
 gem "active_storage_validations", "~> 1.1"
+
+gem "devise-authy", "~> 2.3"
