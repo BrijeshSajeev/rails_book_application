@@ -26,7 +26,7 @@ class UsersController < ApplicationController
         render 'new'
       end
     else
-      redirect_to users_path, alert: 'You are not authorized to delete this user.'
+      redirect_to users_path, alert: 'You are not authorized to create user.'
     end
   end
 
