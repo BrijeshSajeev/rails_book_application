@@ -13,10 +13,14 @@
       <label class="block text-gray-700 text-sm font-bold mb-2">Year</label>
       <p class="text-lg"><%= @book.year %></p>
     </div>
+
     <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2">Genre</label>
-      <p class="text-lg"><%= @book.genre %></p>
+      <label class="block text-gray-700 text-sm font-bold mb-2">Genres</label>
+      <p class="text-lg">
+        <%= @book.genres.map(&:name).join(', ') %>
+      </p>
     </div>
+
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2">Price</label>
       <p class="text-lg">$ <%= @book.price %></p>
