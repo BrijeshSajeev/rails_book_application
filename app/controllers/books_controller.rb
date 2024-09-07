@@ -13,37 +13,42 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params.except(:author_name))
-    # author_name = book_params[:author_name]
-    author_name = current_user.name
+    @book = Book.new(book_params.except(:author_name, :genre_names))
+    author_name = book_params[:author_name]
     @book.author = Author.find_or_create_by(name: author_name)
-
+    
     if @book.save
+      genre_names = book_params[:genre_names].split(',').map(&:strip).uniq
+      genre_names.each do |name|
+        genre = Genre.find_or_create_by(name: name)
+        @book.genres << genre unless @book.genres.include?(genre)
+      end
       redirect_to @book
     else
       render :new, status: :unprocessable_entity
     end
   end
-
+  
   def edit
   end
 
   def update
-    # author_name = book_params[:author_name]
-    if(@book.author.name == current_user.name)
-      author_name = book_params[:author_name].present? ? book_params[:author_name] : current_user.name
-      @book.author = Author.find_or_create_by(name: author_name)
-
-      if @book.update(book_params.except(:author_name))
-        redirect_to @book
-      else
-        render :edit, status: :unprocessable_entity
+    author_name = book_params[:author_name]
+    @book.author = Author.find_or_create_by(name: author_name)
+  
+    if @book.update(book_params.except(:author_name, :genre_names))
+      genre_names = book_params[:genre_names].split(',').map(&:strip).uniq
+      @book.genres = genre_names.map do |name|
+        Genre.find_or_create_by(name: name)
       end
+  
+      redirect_to @book
     else
       render :edit, status: :unprocessable_entity
       # redirect_to root_path, alert: "Only authors can create articles."
     end
   end
+  
 
   def destroy
     if(@book.author.name == current_user.name)
@@ -60,6 +65,6 @@ class BooksController < ApplicationController
   end
   
   def book_params
-    params.require(:book).permit(:name, :author_name, :price, :year, :genre, :image_new)
+    params.require(:book).permit(:name, :author_name, :price, :year, :genre_names)
   end
 end

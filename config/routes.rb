@@ -11,4 +11,10 @@ Rails.application.routes.draw do
   resources :books do
     resources :reviews, only: [:create, :destroy]
   end
+
+  resources :genres do
+    collection do
+      get 'search'
+    end
+  end
 end
