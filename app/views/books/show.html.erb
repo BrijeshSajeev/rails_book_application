@@ -1,6 +1,17 @@
 <div class="container mx-auto p-6">
   <h1 class="text-3xl font-bold mb-4 text-center">Book Details</h1>
   <div class="bg-white shadow-md rounded-lg p-6 w-1/3 m-auto">
+    <!-- Image section -->
+    <div class="mb-4 flex justify-center">
+      <% if @book.image_new.present? %>
+        <%= image_tag( @book.image_new, class: "rounded-lg shadow-md") %>
+      <% else %>
+        <%= image_tag "default_book_image.png", class: "rounded-lg shadow-md" %>
+      <% end %>
+    </div>
+    <!-- End Image section -->
+
+    <!-- Other details -->
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2">Name</label>
       <p class="text-lg"><%= @book.name %></p>
@@ -27,29 +38,33 @@
     </div>
     <div class="flex space-x-4 mb-4">
       <%= link_to 'Back', root_path, class: "bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600" %>
-      <%= link_to 'Delete', book_path(@book), class: "bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600", 
-        data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-      <%= link_to 'Update', edit_book_path(@book), class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+      <% if @book.author.name == current_user.name %>
+        <%= link_to 'Delete', book_path(@book), class: "bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600", 
+          data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+        <%= link_to 'Update', edit_book_path(@book), class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+      <% end %>
     </div>
   </div>
-<div class="container mx-auto p-6 mt-6">
-  <h2 class="text-2xl font-bold mb-4 text-center">Reviews</h2>
-  <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
-  <% reviews_count = @book.reviews.size %>
-   <% if reviews_count > 0 %>
-      <% @book.reviews.each do |review| %>
-        <% if review.content %>
-          <div class="mb-4">
+
+  <div class="container mx-auto p-6 mt-6">
+    <h2 class="text-2xl font-bold mb-4 text-center">Reviews</h2>
+    <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+      <% reviews_count = @book.reviews.size %>
+      <% if reviews_count > 0 %>
+        <% @book.reviews.each do |review| %>
+          <% if review.content %>
+            <div class="mb-4">
               <p class="text-lg"><%= review.content %></p>
               <p class="text-gray-600 mb-3">Rating: <%= review.rating %> / 5</p>
-              <%= link_to 'Delete', book_review_path(@book, review), data: {  turbo_method: :delete,turbo_confirm: 'Are you sure?' }, class: 'text-red-500 hover:text-red-700' %>
+              <%= link_to 'Delete', book_review_path(@book, review), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'text-red-500 hover:text-red-700' %>
               <hr class="my-4">
-          </div>
-        <%end%>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <p class="text-gray-600 text-center">No reviews yet.</p>
       <% end %>
-    <% else %>
-      <p class="text-gray-600 text-center">No reviews yet.</p>
-    <% end %>
+    </div>
   </div>
 </div>
 

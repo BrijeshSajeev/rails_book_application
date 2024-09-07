@@ -45,13 +45,18 @@ class BooksController < ApplicationController
       redirect_to @book
     else
       render :edit, status: :unprocessable_entity
+      # redirect_to root_path, alert: "Only authors can create articles."
     end
   end
   
 
   def destroy
-    @book.destroy
-    redirect_to books_path, status: :see_other
+    if(@book.author.name == current_user.name)
+      @book.destroy
+      redirect_to books_path, status: :see_other
+    else
+      redirect_to root_path, alert: "Only authors can delete articles."
+    end
   end
 
   private
